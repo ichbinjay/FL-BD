@@ -59,6 +59,18 @@ class Model(MLPClassifier):
             print("R.No ", round_no, ":", sep="", end=" ")
             print("acc {:.3f}".format(acc), end="   ")
             print("loss {:.3f}".format(loss), end="   ")
+            print("f1sr {:.3f}".format(f1sr), end="   ")
+            print("recall {:.3f}".format(recall), end="   ")
+
+            if round_no==8:
+                import pickle
+                # Specify the filename for the saved model
+                filename = str(client_no)+' saved_model.pkl'
+                # Open the file in binary write mode and use pickle to serialize the model
+                with open(filename, 'wb') as file:
+                    pickle.dump(classifier, file)
+                print(f"Model has been saved to {filename}")
+
             metrics = [acc, loss, f1sr, recall]
 
             # store roc curve image in the folder

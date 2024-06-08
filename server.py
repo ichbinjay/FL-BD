@@ -48,6 +48,7 @@ for _ in range(rounds):
         else:
             print("Client", user_id, "unauthenticated")
             total_no_of_clients -= 1
+
         if len(clients) == total_no_of_clients:
             print("All clients have been authenticated successfully.")
             break
@@ -88,7 +89,9 @@ for _ in range(rounds):
             break
     print("done")
     print("Accuracy:", "{:.5f}".format(statistics.mean(global_acc)), end=" ")
-    print("Loss:", "{:.5f}".format(statistics.mean(global_loss)), end="\n")
+    print("Loss:", "{:.5f}".format(statistics.mean(global_loss)), end=" ")
+    print("Recall:", "{:.5f}".format(statistics.mean(global_recall)), end=" ")
+    print("F1 Score:", "{:.5f}".format(statistics.mean(global_f1)), end="\n")
 
     accuracies.append(statistics.mean(global_acc))
 
@@ -121,6 +124,7 @@ for _ in range(rounds):
 else:
     for client in clients:
         sock.sendto(bytes("terminate", "utf-8"), client)
+
     import matplotlib.pyplot as plt
     import numpy as np
 
